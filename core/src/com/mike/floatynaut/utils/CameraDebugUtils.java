@@ -1,4 +1,4 @@
-package com.mike.gamename.utils;
+package com.mike.floatynaut.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mike.gamename.Common.GameCongif;
+import com.mike.floatynaut.Common.GameCongif;
 
 /**Utilidades de debudeo para la camara
  * Renderizado de los limites de camara y control de camara WASD y estadisticas como FPS

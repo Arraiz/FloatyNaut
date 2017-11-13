@@ -1,19 +1,19 @@
-package com.mike.gamename;
+package com.mike.floatynaut;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Logger;
-import com.mike.gamename.screen.game.GameScreen;
+import com.mike.floatynaut.screen.game.GameScreen;
 
 
 //heredando de Game podremos cargar screens en el juego
-public class GameName extends Game {
+public class FloatyNaut extends Game {
 	/*atributes*/
 	private AssetManager assetManager;
 	private SpriteBatch batch;
 
-	public GameName() {
+	public FloatyNaut() {
 	}
 
 	@Override

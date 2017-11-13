@@ -1,6 +1,6 @@
-package com.mike.gamename.screen.game;
+package com.mike.floatynaut.screen.game;
 import com.badlogic.gdx.ScreenAdapter;
-import com.mike.gamename.GameName;
+import com.mike.floatynaut.FloatyNaut;
 
 
 /**
@@ -10,7 +10,7 @@ import com.mike.gamename.GameName;
 public class  GameScreen extends ScreenAdapter {
 
     /*atributos*/
-    private final GameName game;
+    private final FloatyNaut game;
     /**cada una de las partes de esta pantalla del juego controllador:logica renderer:renderizado**/
     private  GameController controller;
     private  GameRenderer renderer;
@@ -18,7 +18,7 @@ public class  GameScreen extends ScreenAdapter {
 
 
     /*contructor*/
-    public GameScreen(GameName game) {
+    public GameScreen(FloatyNaut game) {
         this.game=game;
     }
 

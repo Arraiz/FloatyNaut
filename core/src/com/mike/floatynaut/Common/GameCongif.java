@@ -1,4 +1,4 @@
-package com.mike.gamename.Common;
+package com.mike.floatynaut.Common;
 
 /**
  * Created by mikeldiez on 20/10/2017.

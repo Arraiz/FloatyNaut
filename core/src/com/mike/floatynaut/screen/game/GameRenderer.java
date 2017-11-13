@@ -1,4 +1,4 @@
-package com.mike.gamename.screen.game;
+package com.mike.floatynaut.screen.game;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -8,10 +8,10 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mike.gamename.Common.GameCongif;
-import com.mike.gamename.utils.CameraDebugUtils;
-import com.mike.gamename.utils.MouseDebug;
-import com.mike.gamename.utils.ScreenUtilities;
+import com.mike.floatynaut.utils.ScreenUtilities;
+import com.mike.floatynaut.Common.GameCongif;
+import com.mike.floatynaut.utils.CameraDebugUtils;
+import com.mike.floatynaut.utils.MouseDebug;
 
 /**
  * Created by mikeldiez on 08/09/2017.

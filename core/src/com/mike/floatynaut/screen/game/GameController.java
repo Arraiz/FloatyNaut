@@ -1,4 +1,4 @@
-package com.mike.gamename.screen.game;
+package com.mike.floatynaut.screen.game;
 
 
 
