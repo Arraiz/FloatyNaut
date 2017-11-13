@@ -1,4 +1,4 @@
-package com.mike.gamename.desktop;
+package com.mike.floatynaut.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
