@@ -33,7 +33,7 @@ public class Astronaut {
     }
 
     public void applyYforce() {
-        yVelTotal = yJumpForce;
+        yVelTotal = PrefabsSettings.PLAYER_JUMP_SPEED;
     }
 
     private void setPosition(float xPos, float yPos) {

@@ -100,6 +100,7 @@ public class GameRenderer implements Disposable {
         debugViewport.update(width, height, true);
     }
     private void gameDebug(){
+        //astronaut debug
         renderer.circle(astronaut.getBounds().x,astronaut.getBounds().y,astronaut.getBounds().radius,30);
     }
 

@@ -27,7 +27,7 @@ public class GameController implements InputProcessor{
     private void init() {
         //al implemtar la interfaz necesitamos instanciarla
         Gdx.input.setInputProcessor(this);
-        astronaut = new Astronaut(3, 11, 0.5f);
+        astronaut = new Astronaut(4, 11, 0.5f);
 
     }
 
