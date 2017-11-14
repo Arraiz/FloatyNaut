@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mike.floatynaut.prefabs.Astronaut;
 import com.mike.floatynaut.utils.ScreenUtilities;
 import com.mike.floatynaut.Common.GameCongif;
 import com.mike.floatynaut.utils.CameraDebugUtils;
@@ -24,11 +25,16 @@ public class GameRenderer implements Disposable {
 
     /*atributos*/
 
-    /**Controllador de logica del juego**/
+
+    /**
+     * Controllador de logica del juego
+     **/
     private final GameController gameController;
     private ShapeRenderer renderer;
     private final SpriteBatch batch;
-    /**atributoos de debugeo**/
+    /**
+     * atributoos de debugeo
+     **/
     private BitmapFont debugFont;
     private OrthographicCamera debugCamera;
     private Viewport debugViewport;
@@ -39,13 +45,25 @@ public class GameRenderer implements Disposable {
     /***********************************************/
 
 
-    public GameRenderer(GameController gameController,SpriteBatch batch) {
+    /***ENTIDADES REALES DEL JUEGO**/
+    private final Astronaut astronaut;
+
+
+    public GameRenderer(GameController gameController, SpriteBatch batch) {
 
         this.gameController = gameController;
-        this.batch=batch;
+        astronaut=gameController.getAstronaut();
+        this.batch = batch;
         init();
     }
+
     private void init() {
+        debugSettings();
+
+
+    }
+
+    private void debugSettings() {
         /**Inicializamos el renderizado y las camaras**/
         renderer = new ShapeRenderer();
         /**camaras de juego HUD y debug**/
@@ -57,25 +75,41 @@ public class GameRenderer implements Disposable {
         /**fuente de debugeo**/
         debugFont = new BitmapFont();
     }
+
     public void render(float delta) {
         //limpar la screen cada frame
         ScreenUtilities.ClearScreen(Color.GRAY);
         /**lineas de debugeo**/
         renderDebug();
+        /***debug propio del juego(geometria etc...)*/
+        viewport.apply();
+        renderer.setProjectionMatrix(camera.combined);
+        renderer.begin(ShapeRenderer.ShapeType.Line);
+        /***color del astronauta*/
+        Color c = renderer.getColor();
+        renderer.setColor(Color.GREEN);
+        gameDebug();
+        renderer.setColor(c);
+        renderer.end();
 
     }
+
     public void resize(int width, int height) {
         /**actualizacion de todos los viewports**/
         viewport.update(width, height, true);
         debugViewport.update(width, height, true);
     }
+    private void gameDebug(){
+        renderer.circle(astronaut.getBounds().x,astronaut.getBounds().y,astronaut.getBounds().radius,30);
+    }
+
     private void renderDebug() {
 
         /**texto de debug**/
         debugViewport.apply();
         batch.setProjectionMatrix(debugCamera.combined);
         batch.begin();
-        CameraDebugUtils.debugHUDStatistics(viewport,batch,debugFont);
+        CameraDebugUtils.debugHUDStatistics(viewport, batch, debugFont);
         /*****/
 
         /**lineas de debugeo**/
@@ -94,6 +128,7 @@ public class GameRenderer implements Disposable {
 
 
     }
+
     @Override
     public void dispose() {
         renderer.dispose();

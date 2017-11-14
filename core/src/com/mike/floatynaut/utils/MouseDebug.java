@@ -35,11 +35,6 @@ public class MouseDebug {
 
         renderer.setColor(prevColor);
 
-        //mouses click
-        boolean leftPressed = Gdx.input.isButtonPressed(Input.Buttons.LEFT);
-        if (leftPressed) {
-            System.out.println("X: " + worldMouse.x + " Y: " + worldMouse.y);
-        }
 
 
     }
