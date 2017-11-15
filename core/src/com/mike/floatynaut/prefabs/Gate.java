@@ -7,12 +7,13 @@ import java.awt.Rectangle;
  */
 
 public class Gate {
-    private Rectangle upWall;
-    private Rectangle passWall;
-    private Rectangle downWall;
-    private  float xPos;
-    private  float yPos;
+    private Rectangle paseWall;
 
-    private float fateSeparator;
+
+
+
+
+
+
 
 }
