@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.mike.floatynaut.prefabs.Astronaut;
+import com.mike.floatynaut.prefabs.Obstacle;
 
 /**
  * Created by mikeldiez on 08/09/2017.
@@ -14,6 +15,7 @@ public class GameController implements InputProcessor{
 
     /*atributes*/
     private Astronaut astronaut;
+    private Obstacle  obstacle;
 
 
 
@@ -24,10 +26,16 @@ public class GameController implements InputProcessor{
     }
 
 
+    public Obstacle getObstacle() {
+        return obstacle;
+    }
+
     private void init() {
         //al implemtar la interfaz necesitamos instanciarla
         Gdx.input.setInputProcessor(this);
         astronaut = new Astronaut(4, 11, 0.5f);
+        obstacle = new Obstacle(5,5,2,2);
+
 
     }
 

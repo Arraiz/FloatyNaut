@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mike.floatynaut.prefabs.Astronaut;
+import com.mike.floatynaut.prefabs.Obstacle;
 import com.mike.floatynaut.utils.ScreenUtilities;
 import com.mike.floatynaut.Common.GameCongif;
 import com.mike.floatynaut.utils.CameraDebugUtils;
@@ -47,12 +48,14 @@ public class GameRenderer implements Disposable {
 
     /***ENTIDADES REALES DEL JUEGO**/
     private final Astronaut astronaut;
+    private final Obstacle obstacle;
 
 
     public GameRenderer(GameController gameController, SpriteBatch batch) {
 
         this.gameController = gameController;
-        astronaut=gameController.getAstronaut();
+        astronaut = gameController.getAstronaut();
+        obstacle = gameController.getObstacle();
         this.batch = batch;
         init();
     }
@@ -99,10 +102,19 @@ public class GameRenderer implements Disposable {
         viewport.update(width, height, true);
         debugViewport.update(width, height, true);
     }
-    private void gameDebug(){
+
+    private void gameDebug() {
         //astronaut debug
-        renderer.circle(astronaut.getBounds().x,astronaut.getBounds().y,astronaut.getBounds().radius,30);
+        renderer.circle(astronaut.getBounds().x, astronaut.getBounds().y, astronaut.getBounds().radius, 30);
+        //obstacle debug
+        renderer.rect(obstacle.getxPos(), obstacle.getyPos(), obstacle.getxOpening(), obstacle.getyOpening());
+        Color c = renderer.getColor();
+        renderer.setColor(Color.RED);
+        renderer.rect(obstacle.getDownBounds().x, obstacle.getDownBounds().y, obstacle.getDownBounds().width, obstacle.getDownBounds().height);
+        renderer.rect(obstacle.getUpBounds().x, obstacle.getUpBounds().y, obstacle.getUpBounds().width, obstacle.getUpBounds().height);
+        renderer.setColor(c);
     }
+
 
     private void renderDebug() {
 
