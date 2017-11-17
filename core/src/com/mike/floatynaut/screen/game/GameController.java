@@ -4,6 +4,8 @@ package com.mike.floatynaut.screen.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.MathUtils;
 import com.mike.floatynaut.Common.GameCongif;
 import com.mike.floatynaut.prefabs.Astronaut;
 import com.mike.floatynaut.prefabs.Obstacle;
@@ -22,6 +24,12 @@ public class GameController implements InputProcessor {
     private List<Obstacle> obstacles;
 
     /**
+     * game variables
+     **/
+
+    private boolean gameOver = false;
+
+    /**
      * Debug Variables
      **/
     private boolean isFreezed = false;
@@ -36,9 +44,9 @@ public class GameController implements InputProcessor {
     private void init() {
         //al implemtar la interfaz necesitamos instanciarla
         Gdx.input.setInputProcessor(this);
-        astronaut = new Astronaut(4, 11, 0.5f);
+        astronaut = new Astronaut(3, 11, 0.5f);
         obstacles = new ArrayList<Obstacle>();
-        obstacles.add(new Obstacle(GameCongif.WORLD_WIDTH / 2, 5));
+        obstacles.add(new Obstacle(GameCongif.WORLD_WIDTH / 2, 7));
         obstacles.add(new Obstacle((GameCongif.WORLD_WIDTH / 2) + 9, 5));
 
 
@@ -47,20 +55,45 @@ public class GameController implements InputProcessor {
     public void update(float delta) {
 
         //freeze for debug puroposes
-        if (!isFreezed) {
+        if (!isFreezed && !gameOver) {
             astronaut.applyGravity();
             for (Obstacle o : obstacles) {
                 o.moveOnX();
             }
+            checkColissions();
         }
 
 
     }
 
+
+    /*player logic*/
+
+
+    /*gates logic*/
+    private void moveGates() {
+
+    }
+
+    /*collision detection*/
+    private void checkColissions() {
+        for (Obstacle o : obstacles) {
+            if (Intersector.overlaps(astronaut.getBounds(), o.getDownBounds()) || Intersector.overlaps(astronaut.getBounds(), o.getUpBounds())) {
+                gameOver = true;
+            }
+        }
+    }
+
+
     public Astronaut getAstronaut() {
         return astronaut;
     }
 
+
+
+
+
+    /*obstacle logic*/
 
     @Override
     public boolean keyDown(int keycode) {

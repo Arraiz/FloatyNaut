@@ -36,7 +36,7 @@ public class Astronaut {
         yVelTotal = PrefabsSettings.PLAYER_JUMP_SPEED;
     }
 
-    private void setPosition(float xPos, float yPos) {
+    public void setPosition(float xPos, float yPos) {
         bounds.setPosition(xPos, yPos);
     }
 
@@ -46,6 +46,26 @@ public class Astronaut {
 
     public float getxPos() {
         return xPos;
+    }
+
+    public float getyVel() {
+        return yVel;
+    }
+
+    public void setyPos(float yPos) {
+        this.yPos = yPos;
+    }
+
+    public void setyVelTotal(float yVelTotal) {
+        this.yVelTotal = yVelTotal;
+    }
+
+    public float getyVelTotal() {
+        return yVelTotal;
+    }
+
+    public float getyJumpForce() {
+        return yJumpForce;
     }
 
     public float getyPos() {
