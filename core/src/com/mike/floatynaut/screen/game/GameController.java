@@ -4,20 +4,27 @@ package com.mike.floatynaut.screen.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.mike.floatynaut.Common.GameCongif;
 import com.mike.floatynaut.prefabs.Astronaut;
 import com.mike.floatynaut.prefabs.Obstacle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mikeldiez on 08/09/2017.
  */
 
-public class GameController implements InputProcessor{
+public class GameController implements InputProcessor {
 
-    /*atributes*/
+    /*game units*/
     private Astronaut astronaut;
-    private Obstacle  obstacle;
+    private List<Obstacle> obstacles;
 
-
+    /**
+     * Debug Variables
+     **/
+    private boolean isFreezed = false;
 
 
     public GameController() {
@@ -26,22 +33,26 @@ public class GameController implements InputProcessor{
     }
 
 
-    public Obstacle getObstacle() {
-        return obstacle;
-    }
-
     private void init() {
         //al implemtar la interfaz necesitamos instanciarla
         Gdx.input.setInputProcessor(this);
         astronaut = new Astronaut(4, 11, 0.5f);
-        obstacle = new Obstacle(5,5,2,2);
+        obstacles = new ArrayList<Obstacle>();
+        obstacles.add(new Obstacle(GameCongif.WORLD_WIDTH / 2, 5));
+        obstacles.add(new Obstacle((GameCongif.WORLD_WIDTH / 2) + 9, 5));
 
 
     }
 
     public void update(float delta) {
 
-        astronaut.applyGravity();
+        //freeze for debug puroposes
+        if (!isFreezed) {
+            astronaut.applyGravity();
+            for (Obstacle o : obstacles) {
+                o.moveOnX();
+            }
+        }
 
 
     }
@@ -53,9 +64,11 @@ public class GameController implements InputProcessor{
 
     @Override
     public boolean keyDown(int keycode) {
-        if(Input.Keys.SPACE==keycode){
+        if (Input.Keys.SPACE == keycode) {
             astronaut.applyYforce();
 
+        } else if (Input.Keys.P == keycode) {
+            isFreezed = !isFreezed;
         }
         return true;
     }
@@ -72,11 +85,9 @@ public class GameController implements InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        if(Input.Buttons.LEFT==button){
+        if (Input.Buttons.LEFT == button) {
             astronaut.applyYforce();
-
         }
-
         return true;
     }
 
@@ -98,5 +109,9 @@ public class GameController implements InputProcessor{
     @Override
     public boolean scrolled(int amount) {
         return false;
+    }
+
+    public List<Obstacle> getObstacles() {
+        return obstacles;
     }
 }

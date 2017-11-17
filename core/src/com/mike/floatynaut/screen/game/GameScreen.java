@@ -32,7 +32,9 @@ public class  GameScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
+
         super.render(delta);
+        //freeze the game for debugging purposes
         /**actualizamos controllador y renderizador**/
         controller.update(delta);
         renderer.render(delta);

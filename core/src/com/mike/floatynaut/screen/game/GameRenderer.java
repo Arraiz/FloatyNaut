@@ -15,6 +15,8 @@ import com.mike.floatynaut.Common.GameCongif;
 import com.mike.floatynaut.utils.CameraDebugUtils;
 import com.mike.floatynaut.utils.MouseDebug;
 
+import java.util.List;
+
 /**
  * Created by mikeldiez on 08/09/2017.
  */
@@ -48,14 +50,14 @@ public class GameRenderer implements Disposable {
 
     /***ENTIDADES REALES DEL JUEGO**/
     private final Astronaut astronaut;
-    private final Obstacle obstacle;
+    private final List<Obstacle> obstacles;
 
 
     public GameRenderer(GameController gameController, SpriteBatch batch) {
 
         this.gameController = gameController;
         astronaut = gameController.getAstronaut();
-        obstacle = gameController.getObstacle();
+        obstacles = gameController.getObstacles();
         this.batch = batch;
         init();
     }
@@ -106,13 +108,17 @@ public class GameRenderer implements Disposable {
     private void gameDebug() {
         //astronaut debug
         renderer.circle(astronaut.getBounds().x, astronaut.getBounds().y, astronaut.getBounds().radius, 30);
-        //obstacle debug
-        renderer.rect(obstacle.getxPos(), obstacle.getyPos(), obstacle.getxOpening(), obstacle.getyOpening());
         Color c = renderer.getColor();
-        renderer.setColor(Color.RED);
-        renderer.rect(obstacle.getDownBounds().x, obstacle.getDownBounds().y, obstacle.getDownBounds().width, obstacle.getDownBounds().height);
-        renderer.rect(obstacle.getUpBounds().x, obstacle.getUpBounds().y, obstacle.getUpBounds().width, obstacle.getUpBounds().height);
+        //obstacle debug
+        for (Obstacle obstacle : obstacles) {
+            renderer.setColor(Color.GREEN);
+            renderer.rect(obstacle.getxPos(), obstacle.getyPos(), obstacle.getxOpening(), obstacle.getyOpening());
+            renderer.setColor(Color.RED);
+            renderer.rect(obstacle.getDownBounds().x, obstacle.getDownBounds().y, obstacle.getDownBounds().width, obstacle.getDownBounds().height);
+            renderer.rect(obstacle.getUpBounds().x, obstacle.getUpBounds().y, obstacle.getUpBounds().width, obstacle.getUpBounds().height);
+        }
         renderer.setColor(c);
+
     }
 
 
