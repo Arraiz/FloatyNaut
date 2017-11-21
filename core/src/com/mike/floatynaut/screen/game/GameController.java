@@ -17,11 +17,13 @@ import java.util.List;
  * Created by mikeldiez on 08/09/2017.
  */
 
+//implementamos inputprocessor para la entrada de teclado
 public class GameController implements InputProcessor {
 
     /*game units*/
     private Astronaut astronaut;
     private List<Obstacle> obstacles;
+    private int score;
 
     /**
      * game variables
@@ -57,6 +59,7 @@ public class GameController implements InputProcessor {
         //freeze for debug puroposes
         if (!isFreezed && !gameOver) {
             astronaut.applyGravity();
+            enableScore();
             for (Obstacle o : obstacles) {
                 o.moveOnX();
             }
@@ -81,6 +84,13 @@ public class GameController implements InputProcessor {
             if (Intersector.overlaps(astronaut.getBounds(), o.getDownBounds()) || Intersector.overlaps(astronaut.getBounds(), o.getUpBounds())) {
                 gameOver = true;
             }
+        }
+    }
+
+    //enableScore logic
+    private void enableScore() {
+        for (Obstacle o : obstacles) {
+
         }
     }
 
